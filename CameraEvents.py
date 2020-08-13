@@ -210,8 +210,10 @@ class DahuaDevice():
                 #fp.close()
                 #construct image payload
                 #{{ \"message\": \"Motion Detected: {0}\", \"imagebase64\": \"{1}\" }}"
-                imagepayload = (base64.encodebytes(image)).decode("utf-8")
-                msgpayload = json.dumps({"message":message,"imagebase64":imagepayload})
+                #imagepayload = (base64.encodebytes(image)).decode("utf-8")
+		imagepayload = (bytearray(image)
+		msgpayload = json.dumps({"message":message,"image":imagepayload})
+                #msgpayload = json.dumps({"message":message,"imagebase64":imagepayload})
                 #msgpayload = "{{ \"message\": \"{0}\", \"imagebase64\": \"{1}\" }}".format(message,imgpayload)
                 
                 if not nopublish:
